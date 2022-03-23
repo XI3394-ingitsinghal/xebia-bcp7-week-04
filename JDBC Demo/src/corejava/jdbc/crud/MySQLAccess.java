@@ -21,7 +21,7 @@ public class MySQLAccess {
 			Class.forName("com.mysql.jdbc.Driver");
 			// Setup the connection with the DB
 			connect = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/bcp7_training?" + "user=ingits&password=bcp7javaee&useSSL=false");
+					"jdbc:mysql://bcp7-java-db-01.cs4gnvom3jcr.ap-south-1.rds.amazonaws.com/ingits.bcp7javaee?" + "user=ingits&password=bcp7javaee&useSSL=false");
 
 			// Statements allow to issue SQL queries to the database
 			statement = connect.createStatement();
@@ -101,6 +101,12 @@ public class MySQLAccess {
 		}
 	}
 
+	// Updating the database
+	private void updateDatabase() throws SQLException {
+		
+		
+		
+	}
 	// You need to close the resultSet
 	private void close() {
 		try {
