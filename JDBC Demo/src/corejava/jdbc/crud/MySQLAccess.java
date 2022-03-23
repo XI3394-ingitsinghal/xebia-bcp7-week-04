@@ -22,7 +22,8 @@ public class MySQLAccess {
 			Class.forName("com.mysql.jdbc.Driver");
 			// Setup the connection with the DB
 			connect = DriverManager.getConnection(
-					"jdbc:mysql://bcp7-java-db-01.cs4gnvom3jcr.ap-south-1.rds.amazonaws.com/ingits.bcp7javaee?" + "user=ingits&password=bcp7javaee&useSSL=false");
+					"jdbc:mysql://bcp7-java-db-01.cs4gnvom3jcr.ap-south-1.rds.amazonaws.com/ingits.bcp7javaee?"
+							+ "user=ingits&password=bcp7javaee&useSSL=false");
 
 			// Statements allow to issue SQL queries to the database
 			statement = connect.createStatement();
@@ -104,36 +105,36 @@ public class MySQLAccess {
 
 	// Updating the database
 	private void updateDatabase() throws SQLException {
-		
-		
-	         // read input
-			Scanner scan=null;
-	         scan = new Scanner(System.in);
-	         if(scan != null) {
-	            System.out.println("Enter the details"
-	            		+ " to update: ");
-	            
-	            String user=scan.next();
-	            String email=scan.next();
-				String website=scan.next();
-				String summary=scan.next(); 
-				String date=scan.next(); 
-				String comment=scan.next(); 
-				
-				PreparedStatement st=connect.prepareStatement("insert into  comments(myuser,email,webpage,datum,summary,COMMENTS) values (?,?,?,?,?,?)");
-				
-				st.setString(1,user);
-				st.setString(2,email);
 
-				st.setString(3,website);
-				st.setString(4,summary);
-				st.setString(5,date);
-				st.setString(6,comment);
-				//5
-				st.executeUpdate();
-	         }
-		
+		// read input
+		Scanner scan = null;
+		scan = new Scanner(System.in);
+		if (scan != null) {
+			System.out.println("Enter the details" + " to update user, email,website,summary,date,comment: ");
+
+			String user = scan.next();
+			String email = scan.next();
+			String website = scan.next();
+			String summary = scan.next();
+			String date = scan.next();
+			String comment = scan.next();
+
+			PreparedStatement st = connect.prepareStatement(
+					"insert into  comments(myuser,email,webpage,datum,summary,COMMENTS) values (?,?,?,?,?,?)");
+
+			st.setString(1, user);
+			st.setString(2, email);
+
+			st.setString(3, website);
+			st.setString(4, summary);
+			st.setString(5, date);
+			st.setString(6, comment);
+			// 5
+			st.executeUpdate();
+		}
+
 	}
+
 	// You need to close the resultSet
 	private void close() {
 		try {
