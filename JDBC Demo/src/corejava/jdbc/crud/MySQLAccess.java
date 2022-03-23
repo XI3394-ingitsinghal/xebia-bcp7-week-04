@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
+import java.util.Scanner;
 
 public class MySQLAccess {
 
@@ -105,6 +106,32 @@ public class MySQLAccess {
 	private void updateDatabase() throws SQLException {
 		
 		
+	         // read input
+			Scanner scan=null;
+	         scan = new Scanner(System.in);
+	         if(scan != null) {
+	            System.out.println("Enter the details"
+	            		+ " to update: ");
+	            
+	            String user=scan.next();
+	            String email=scan.next();
+				String website=scan.next();
+				String summary=scan.next(); 
+				String date=scan.next(); 
+				String comment=scan.next(); 
+				
+				PreparedStatement st=connect.prepareStatement("insert into  comments(myuser,email,webpage,datum,summary,COMMENTS) values (?,?,?,?,?,?)");
+				
+				st.setString(1,user);
+				st.setString(2,email);
+
+				st.setString(3,website);
+				st.setString(4,summary);
+				st.setString(5,date);
+				st.setString(6,comment);
+				//5
+				st.executeUpdate();
+	         }
 		
 	}
 	// You need to close the resultSet
@@ -129,5 +156,6 @@ public class MySQLAccess {
 	public static void main(String[] args) throws Exception {
 		MySQLAccess dao = new MySQLAccess();
 		dao.readDataBase();
+		dao.updateDatabase();
 	}
 }
